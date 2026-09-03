@@ -28,7 +28,19 @@ APPLE_COLOR = (255, 0, 0)
 SNAKE_COLOR = (0, 255, 0)
 
 # Скорость движения змейки:
-SPEED = 10
+SPEED = 20
+
+# Инициализация Pygame
+pygame.init()
+
+# Настройка игрового окна:
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
+
+# Заголовок окна игрового поля:
+pygame.display.set_caption('Змейка')
+
+# Настройка времени:
+clock = pygame.time.Clock()
 
 
 # Тут опишите все классы игры.
@@ -154,13 +166,8 @@ def handle_keys(snake):
 
 def main():
     """Реализация pygame."""
-    pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption('Змейка')
-
     snake = Snake()
     apple = Apple()
-    clock = pygame.time.Clock()
     fps = 10
 
     while True:
