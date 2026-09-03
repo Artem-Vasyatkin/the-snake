@@ -1,6 +1,7 @@
 import random
-import pygame
 import sys
+
+import pygame
 
 # Константы для размеров поля и сетки:
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
@@ -115,7 +116,7 @@ class Snake(GameObject):
             if len(self.positions) > self.length
             else None
         )
-        
+
         if len(self.positions) > self.length:
             self.positions.pop()
 
@@ -164,7 +165,7 @@ def main():
     """Реализация pygame."""
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Змейка")
+    pygame.display.set_caption('Змейка')
 
     snake = Snake()
     apple = Apple()
