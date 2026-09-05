@@ -54,7 +54,7 @@ class GameObject:
     def draw(self):
         """Метод отрисовки объектов."""
         raise NotImplementedError(
-            "Метод draw() должен быть переопределен в дочернем классе."
+            'Метод draw() должен быть переопределен в дочернем классе.'
         )
 
 
@@ -89,13 +89,11 @@ class Apple(GameObject):
 def is_under_text(position):
     """Проверяет, находится ли позиция под областью текста."""
     x, y = position
-    if x < 200 and y < 80:
-        return True
-    if x > SCREEN_WIDTH - 200 and y < 110:
-        return True
-    if x > SCREEN_WIDTH - 250 and y > SCREEN_HEIGHT - 30:
-        return True
-    return False
+    return (
+        (x < 200 and y < 80)
+        or (x > SCREEN_WIDTH - 200 and y < 110)
+        or (x > SCREEN_WIDTH - 250 and y > SCREEN_HEIGHT - 30)
+    )
 
 
 class Snake(GameObject):
