@@ -36,6 +36,18 @@ MIN_SPEED = 5
 MAX_SPEED = 20
 SPEED_STEP = 1
 
+# Инициализация Pygame
+pg.init()  # Нельзя переносить в main, поскольку падает тест
+
+# Настройка игрового окна.
+screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
+
+# Заголовок окна игрового поля.
+pg.display.set_caption('Змейка (ESC - выход, +/- - скорость)')
+
+# Настройка времени.
+clock = pg.time.Clock()
+
 
 class GameObject:
     """Базовый класс для игровых объектов."""
@@ -208,6 +220,7 @@ def show_info(speed, score):
     font = pg.font.SysFont('Arial', 18)
     font_small = pg.font.SysFont('Arial', 14)
 
+    # Создаем полупрозрачный фон для текста
     s = pg.Surface((200, 80))
     s.set_alpha(180)
     s.fill(BOARD_BACKGROUND_COLOR)
@@ -243,6 +256,7 @@ def show_info(speed, score):
         screen.blit(text, text_rect)
         y_offset += 20
 
+    # Подсказка о сбросе скорости
     reset_hint = font_small.render(
         'Скорость сбрасывается при столкновении',
         True,
@@ -255,14 +269,6 @@ def show_info(speed, score):
 
 def main():
     """Реализация pygame."""
-    global screen
-
-    pg.init()
-
-    screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
-    pg.display.set_caption('Змейка (ESC - выход, +/- - скорость)')
-    clock = pg.time.Clock()
-
     snake = Snake()
     apple = Apple(snake.positions)
     speed = BASE_SPEED
@@ -288,10 +294,12 @@ def main():
             score = 0
             screen.fill(BOARD_BACKGROUND_COLOR)
 
+        # Полностью перерисовываем поле
         screen.fill(BOARD_BACKGROUND_COLOR)
         apple.draw()
         snake.draw()
 
+        # Отображаем информацию поверх всего
         show_info(speed, score)
         pg.display.update()
 
